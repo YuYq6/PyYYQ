@@ -89,9 +89,8 @@ class SDT:
 
     @property
     def eraTime(self):
-        dt0 = datetime(1900,1,1,0,0,0).time()
+        dt0 = datetime.date(1900,1,1)        
         
-        self.dt
         return 
     # 方法
     def add(self, seconds):
