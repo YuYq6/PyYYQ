@@ -87,6 +87,12 @@ class SDT:
         else:
             return f"{zhdt.lunar_year}-{zhdt.lunar_month}-{zhdt.lunar_day}"
 
+    @property
+    def eraTime(self):
+        dt0 = datetime(1900,1,1,0,0,0).time()
+        
+        self.dt
+        return 
     # 方法
     def add(self, seconds):
         """

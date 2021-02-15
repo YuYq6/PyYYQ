@@ -31,13 +31,18 @@ def getftpfilename(ftpadress, remotedir, pattern):
     return re_files
 
 
-def downfile(ftpadress, remotedir, filenames, localdir):
+def downfile(ftpadress, remotedir, filenames, localdir, **args):
+
     ftp = FTP(ftpadress)
     # print(ftp.getwelcome())
     # get direction info
 
     try:
-        ftp.login()
+        if len(args) == 2:
+            # need input user info
+            ftp.login(args['user'],args['passwd'])
+        else:
+            ftp.login()
         # ftp.cwd(remotedir)
         for file in filenames:
             remotefile = remotedir + '/' + file
