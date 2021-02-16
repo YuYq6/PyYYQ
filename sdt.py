@@ -10,7 +10,7 @@ Function    :
 import datetime
 import zhdate as ZhDate
 import time
-
+import math
 
 class SDT:
     """
@@ -80,6 +80,7 @@ class SDT:
 
     @property
     def zhsdt(self):
+        # chinese date
         d2 = datetime.datetime.strptime(self._sdt, '%Y%m%d%H%M%S')
         zhdt = ZhDate.ZhDate.from_datetime(d2)
         if zhdt.leap_month:
@@ -89,9 +90,15 @@ class SDT:
 
     @property
     def eraTime(self):
-        dt0 = datetime.date(1900,1,1)        
-        
-        return 
+        # ren hours from 1900-1-1 0:0:0
+        dt0 = SDT.toDT("19000101000000")
+        hours = (self.dt - dt0) / 3600 
+        return math.floor(hours)
+    
+    @property
+    def necpTime(self):
+        return self._sdt[:10]
+    
     # 方法
     def add(self, seconds):
         """
